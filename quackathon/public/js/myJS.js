@@ -44,7 +44,7 @@ for(let x = 0; x < ROW; x++){
         card.classList.add("btn")
         card.classList.add("btn-primary")
 
-        card.innerHTML = count
+       // card.innerHTML = count
 
         
 
@@ -58,12 +58,11 @@ for(let x = 0; x < ROW; x++){
         if(random == 0)
         {
             cardObj.duckify();
+            card.innerHTML = "duck"
         }
 
-        card.addEventListener("click", function(e) {flipCard(e)})
-
-        att = card.setAttribute("index")
-        att.value = ""+count
+        let func = "flipCard(" + count + ")"
+        card.setAttribute("onclick", func)
 
         cardObjList.push(cardObj)
 
@@ -74,10 +73,9 @@ for(let x = 0; x < ROW; x++){
 }
 
 
-
 function flipCard(e)
 {
-    cardObj = cardObjList[parseInt(e.target.getAttribute("index"))]
+    cardObj = cardObjList[e]
 
     if(cardObj.isFlipped)
     {

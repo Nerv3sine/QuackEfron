@@ -9,17 +9,19 @@ class Card
 
     flip()
     {
-        this.isFlipped = true;
+        this.isFlipped = !this.isFlipped;
     }
 
-    duckify()
+    duckify(aflag)
     {
-       this.hasDuck = true;
+       this.hasDuck = aflag;
     }
 
 
 
 }
+
+testReset = createButton("")
 
 let grid = document.getElementById("board")
 
@@ -74,11 +76,23 @@ function startGame()
         // randomly assigns ducks
         if(random % randLimit == 0)
         {
-            cardObjList[i].duckify();
+            cardObjList[i].duckify(true);
             cardList[i].innerHTML = "d"
         }
     }
     
+}
+
+function resetGame()
+{
+    for(let i = 0; i < cardObjList.length; i++)
+    {
+        cardObjList[i].duckify(false)
+        cardObjList[i].flip()
+    }
+    
+    startGame()
+
 }
 
 function flipCard(e)

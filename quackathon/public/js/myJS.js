@@ -21,7 +21,13 @@ class Card
 
 }
 
-testReset = createButton("")
+/*testing button*/
+let testOut = document.getElementById("smolDiv");
+let testbtn = document.createElement("button");
+testbtn.innerHTML = "BUTTON";
+testOut.appendChild(testbtn)
+testbtn.addEventListener("click", function(){/*insert functions here*/}, false);
+/*END */
 
 let grid = document.getElementById("board")
 

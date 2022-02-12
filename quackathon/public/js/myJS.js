@@ -21,7 +21,6 @@ class Card
 
 }
 
-testReset = createButton("")
 
 let grid = document.getElementById("board")
 
@@ -29,7 +28,7 @@ var ROW = 5;
 var COLUMN = 5;
 var POINTS = 100;
 var MAX_GUESS = 9;
-var randLimit = 10;
+var randLimit = 5;
 
 var count = 0;
 var score = 0;
@@ -38,33 +37,42 @@ cardList = []
 cardObjList = []
 isGameOn = true;
 
-for(let x = 0; x < ROW; x++){
-    for(let y = 0; y < COLUMN; y++){
+function createCards()
+{
+    for(let x = 0; x < ROW; x++){
+        for(let y = 0; y < COLUMN; y++){
 
-        const card = document.createElement("button")
-        card.classList.add("btn")
-        card.classList.add("btn-primary")
+            // Creates card
+            const card = document.createElement("button")
+            card.classList.add("btn")
+            card.classList.add("btn-primary")
+            card.innerHTML = count
+    
+            
+            // saves HTML elment for tracking
+            cardList.push(card);
+            
+            //Add click listener
+            let func = "flipCard(" + count + ")"
+            card.setAttribute("onclick", func)
+    
+            cardObj = new Card(false, false)
+            
+            //cardObj is in sync with Card element
+            cardObjList.push(cardObj)
+    
+            grid.appendChild(card)
+            count++
+        }
 
-        card.innerHTML = count
-
+        grid.appendChild(document.createElement("br"))
         
-        // saves HTML elment for tracking
-        cardList.push(card);
-
-        let func = "flipCard(" + count + ")"
-        card.setAttribute("onclick", func)
-
-        cardObj = new Card(false, false)
-
-        cardObjList.push(cardObj)
-
-        grid.appendChild(card)
-        count++
+        // game starts
+        startGame();
     }
-    grid.appendChild(document.createElement("br"))
-
-    startGame();
 }
+
+
 
 function startGame()
 {
@@ -85,6 +93,7 @@ function startGame()
 
 function resetGame()
 {
+    // removes ducks and flips back all cards then starts the game
     for(let i = 0; i < cardObjList.length; i++)
     {
         cardObjList[i].duckify(false)
@@ -97,35 +106,35 @@ function resetGame()
 
 function flipCard(e)
 {
+    // will only flip card if game is active
+
     if(isGameOn)
     {
         cardObj = cardObjList[e]
 
         if(cardObj.isFlipped)
         {
-            console.log("Flipped")
             return
         }
 
-        // if the card has a duck
+        // if the card has a duck give it points
         if(cardObj.hasDuck)
         {
             score+= POINTS;
         }
-        else
-        {
-            console.log("No duck")
-        }
 
+        // endgame if guess has passed its limit
         guess++;
         if(guess > MAX_GUESS)
         {
             endGame()
         }
 
+        //flip card
         cardObj.flip()
 
     }
+
     console.log("Score:"+score)
     console.log("Guess:"+guess)
 }
@@ -135,4 +144,5 @@ function endGame()
     isGameOn = false;
 }
 
-
+// init UI
+createCards()

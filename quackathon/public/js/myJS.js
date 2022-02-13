@@ -17,9 +17,22 @@ class Card
        this.hasDuck = aflag;
     }
 
+    reset()
+    {
+        this.isFlipped = false
+    }
+
 
 
 }
+
+/*testing button*/
+let testOut = document.getElementById("smolDiv");
+let testbtn = document.createElement("button");
+testbtn.innerHTML = "BUTTON";
+testOut.appendChild(testbtn)
+testbtn.addEventListener("click", function(){resetGame()}, false);
+/*END */
 
 
 let grid = document.getElementById("board")
@@ -28,7 +41,7 @@ var ROW = 5;
 var COLUMN = 5;
 var POINTS = 100;
 var MAX_GUESS = 9;
-var randLimit = 5;
+var randLimit = 4;
 
 var count = 0;
 var score = 0;
@@ -88,6 +101,7 @@ function startGame()
             cardList[i].innerHTML = "d"
         }
     }
+    isGameon = true
     
 }
 
@@ -97,10 +111,15 @@ function resetGame()
     for(let i = 0; i < cardObjList.length; i++)
     {
         cardObjList[i].duckify(false)
-        cardObjList[i].flip()
+        cardObjList[i].reset()
+        cardList[i].innerHTML = i;
     }
     
+    score = 0
+    guess = 0
+    isGameOn = true
     startGame()
+    
 
 }
 
@@ -135,8 +154,7 @@ function flipCard(e)
 
     }
 
-    console.log("Score:"+score)
-    console.log("Guess:"+guess)
+    
 }
 
 function endGame()

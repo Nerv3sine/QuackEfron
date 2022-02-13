@@ -78,14 +78,17 @@ td {
     height: 75px;
 }
 
-defaultSprite{
-    background-image: url("./water.png");
+.defaultSprite{
+    background-image: url("water.png");
+    background-size: 100% 100%;
 }
 
-duckSprite{
+.duckSprite{
     background-image: url("./duck.png");
+    background-size: 100% 100%;
 }
 
-revealedSprite{
+.revealedSprite{
     background-image: url("./revealedWater.jpeg");
+    background-size: 100% 100%;
 }

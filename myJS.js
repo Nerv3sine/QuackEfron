@@ -45,7 +45,6 @@ function createCards()
 {
     let count = 0;
     let board = document.getElementById("gameBoard").children[0].children;
-    console.log(board[0].children)
     for(let x = 0; x < ROW; x++){
         for(let y = 0; y < COLUMN; y++){
 
@@ -160,8 +159,8 @@ const updateVisuals = (index) => {
     comp.classList.remove("defaultSprite")
     comp.classList.remove("duckSprite")
     comp.classList.remove("revealedSprite")
-    let reveal = comp.isFlipped;
-    let duck = comp.hasDuck;
+    let reveal = cardObjList[index].isFlipped;
+    let duck = cardObjList[index].hasDuck;
     if(reveal){
         if(duck){
             comp.classList.add("duckSprite")

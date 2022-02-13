@@ -97,14 +97,20 @@ td {
     position: absolute;
     left: 0;
     top:50%;
-    width: 300px;
-    height: 300px;
+    padding: 20px;
+    width: 350px;
+    height: 350px;
 }
 
 .duck2 {
     position: absolute;
     right: 0;
     top: 50%;
-    width: 300px;
-    height: 300px;
+    padding: 20px;
+    width: 350px;
+    height: 350px;
+}
+
+.main_interface {
+    vertical-align: middle;
 }

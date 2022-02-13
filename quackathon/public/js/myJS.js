@@ -16,7 +16,9 @@ class Card
     {
        this.hasDuck = aflag;
     }
-
+    
+    //reset all flipped cards
+    
     reset()
     {
         this.isFlipped = false

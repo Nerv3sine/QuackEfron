@@ -131,6 +131,8 @@ function flipCard(e)
         if(cardObj.hasDuck)
         {
             score+= POINTS;
+            var audio = new Audio('quack.mp3')
+            audio.play()
         }
 
         // endgame if guess has passed its limit

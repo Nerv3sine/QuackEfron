@@ -31,7 +31,7 @@ const ROW = 6;
 const COLUMN = 6;
 const MAX_GUESS = 9;
 const randLimit = 4;
-const POINTS = 100;
+const POINTS = 1;
 const DUCK_LIMIT = 6;
 
 var score = 0;
@@ -88,12 +88,9 @@ function startGame()
             cardObjList[random].duckify(true)
             numList.push(random)
          }
-
-
     }
 
     isGameOn = true
-    
 }
 
 function resetGame()
@@ -127,9 +124,13 @@ function flipCard(e)
         // if the card has a duck give it points
         if(cardObj.hasDuck)
         {
-            score+= POINTS;
+            score += POINTS;
             var audio = new Audio('quack.mp3')
             audio.play()
+            if(score == DUCK_LIMIT){
+                alert("You got them all!");
+                endGame()
+            }
         }
 
         // endgame if guess has passed its limit
@@ -149,9 +150,9 @@ function flipCard(e)
 
 const updateStats = () => {
     let scoreBoard = document.getElementById("scoreTracker");
-    scoreBoard.innerHTML = score;
+    scoreBoard.innerHTML = (score + "/" + DUCK_LIMIT);
     let guessBoard = document.getElementById("tryTracker");
-    guessBoard.innerHTML = guess;
+    guessBoard.innerHTML = (guess + "/" + (MAX_GUESS + 1));
 }
 
 /*

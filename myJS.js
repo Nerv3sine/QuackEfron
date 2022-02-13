@@ -156,11 +156,12 @@ const updateStats = () => {
 * 3 = nothing
 */
 const updateVisuals = (index) => {
-    cardList[index].classList.remove("defaultSprite")
-    cardList[index].classList.remove("duckSprite")
-    cardList[index].classList.remove("revealedSprite")
-    let reveal = cardObjList[index].isFlipped;
-    let duck = cardObjList[index].hasDuck;
+    comp = cardList[index]
+    comp.classList.remove("defaultSprite")
+    comp.classList.remove("duckSprite")
+    comp.classList.remove("revealedSprite")
+    let reveal = comp.isFlipped;
+    let duck = comp.hasDuck;
     if(reveal){
         if(duck){
             comp.classList.add("duckSprite")

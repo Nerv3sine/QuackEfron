@@ -1,4 +1,3 @@
-
 class Card
 {
     constructor(isFlipped, hasDuck)
@@ -70,32 +69,30 @@ function createCards()
         }
         
         // game starts
-        startGame();
     }
+    startGame();
 }
 
 
 
 function startGame()
 {
-    let cnt = 0
-    for(let i  = 0; i < cardList.length; i++)
+    numList = []
+    while(numList.length < DUCK_LIMIT)
     {
-        // generates random duck cards
-        random = Math.floor(Math.random() * ROW * COLUMN)
+         // generates random duck cards
+         random = Math.floor(Math.random() *ROW * COLUMN)
 
-        // randomly assigns ducks
-        if(random % randLimit == 0)
-        {
-            cardObjList[i].duckify(true);
-            cardList[i].innerHTML = "d"
-            cnt++
-            if(cnt >= DUCK_LIMIT){
-                break;
-            }
-        }
+         if(!numList.includes(random))
+         {
+            cardObjList[random].duckify(true)
+            numList.push(random)
+         }
+
+
     }
-    isGameon = true
+
+    isGameOn = true
     
 }
 
@@ -140,6 +137,7 @@ function flipCard(e)
         if(guess > MAX_GUESS)
         {
             endGame()
+            alert("You have used up all of your shots!");
         }
 
         //flip card

@@ -78,6 +78,7 @@ function createCards()
 
 function startGame()
 {
+    let cnt = 0
     for(let i  = 0; i < cardList.length; i++)
     {
         // generates random duck cards
@@ -88,6 +89,10 @@ function startGame()
         {
             cardObjList[i].duckify(true);
             cardList[i].innerHTML = "d"
+            cnt++
+            if(cnt >= DUCK_LIMIT){
+                break;
+            }
         }
     }
     isGameon = true
